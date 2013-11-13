@@ -6,20 +6,20 @@ require 'json'
 require 'rest-client'
 require 'dotenv'
 
-PAGES = 1
 
 Dotenv.load
 
 get '/commits' do
-	commits = []
+	
+  commits = []
 
   # fetches specified number of pages of commits, each containing 100 commits
-	PAGES.times do |i|
-		commit_page = RestClient.get("https://api.github.com/repos/rails/rails/commits", {params: {
+  1.times do |i|
+    puts i
+		commit_page = RestClient.get("https://api.github.com/repos/ryanb/cancan/commits", {params: {
 			client_id: ENV["CLIENT_ID"],
 			client_secret: ENV["CLIENT_SECRET"],
-			page: i,
-			per_page: 100,
+			per_page: 100
 		}})
 		
     # inserts each commit into the comits array
